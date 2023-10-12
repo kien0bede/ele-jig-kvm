@@ -1,0 +1,166 @@
+#ifndef __LP50XX_H
+#define __LP50XX_H
+
+#include <stdint.h>
+#include <stdbool.h>
+
+/* Register address */
+#define REG_CONFIG0				(0x00U)
+#define REG_CONFIG1				(0x01U)
+#define REG_LED_CONFIG0			(0x02U)
+#define REG_BANK_BRIGHTNESS		(0x03U)
+#define REG_BANK_A_COLOR		(0x04U)
+#define REG_BANK_B_COLOR		(0x05U)
+#define REG_BANK_C_COLOR		(0x06U)
+#define REG_LED0_BRIGHTNESS		(0x07U)
+#define REG_LED1_BRIGHTNESS		(0x08U)
+#define REG_LED2_BRIGHTNESS		(0x09U)
+
+#if defined(LP5012)
+#define REG_LED3_BRIGHTNESS		(0x0AU)
+#endif
+
+#define REG_OUT0_COLOR			(0x0BU)
+#define REG_OUT1_COLOR			(0x0CU)
+#define REG_OUT2_COLOR			(0x0DU)
+#define REG_OUT3_COLOR			(0x0EU)
+#define REG_OUT4_COLOR			(0x0FU)
+#define REG_OUT5_COLOR			(0x10U)
+#define REG_OUT6_COLOR			(0x11U)
+#define REG_OUT7_COLOR			(0x12U)
+#define REG_OUT8_COLOR			(0x13U)
+
+#if defined(LP5012)
+#define REG_OUT9_COLOR			(0x14U)
+#define REG_OUT10_COLOR			(0x15U)
+#define REG_OUT11_COLOR			(0x16U)
+#endif
+
+#define REG_RESET				(0x17U)
+
+/* Bit definition for CONFIG0 */
+#define CONFIG0_CHIP_EN_Pos					(6U)
+#define CONFIG0_CHIP_EN_Msk					(0x1U << CONFIG0_CHIP_EN_Pos)
+#define CONFIG0_CHIP_EN						CONFIG0_CHIP_EN_Msk
+
+/* Bit definition for CONFIG1 */
+#define CONFIG1_LED_GLOBAL_OFF_Pos			(0U)
+#define CONFIG1_LED_GLOBAL_OFF_Msk			(0x1U << CONFIG1_LED_GLOBAL_OFF_Pos)
+#define CONFIG1_LED_GLOBAL_OFF				CONFIG1_LED_GLOBAL_OFF_Msk
+
+#define CONFIG1_MAX_CURRENT_Pos				(1U)
+#define CONFIG1_MAX_CURRENT_Msk				(0x1U << CONFIG1_MAX_CURRENT_Pos)
+#define CONFIG1_MAX_CURRENT					CONFIG1_MAX_CURRENT_Msk
+
+#define CONFIG1_PWM_DITHERING_EN_Pos		(2U)
+#define CONFIG1_PWM_DITHERING_EN_Msk		(0x1U << CONFIG1_PWM_DITHERING_EN_Pos)
+#define CONFIG1_PWM_DITHERING_EN			CONFIG1_PWM_DITHERING_EN_Msk
+
+#define CONFIG1_AUTO_INCR_EN_Pos			(3U)
+#define CONFIG1_AUTO_INCR_EN_Msk			(0x1U << CONFIG1_AUTO_INCR_EN_Pos)
+#define CONFIG1_AUTO_INCR_EN				CONFIG1_AUTO_INCR_EN_Msk
+
+#define CONFIG1_POWER_SAVE_EN_Pos			(4U)
+#define CONFIG1_POWER_SAVE_EN_Msk			(0x1U << CONFIG1_POWER_SAVE_EN_Pos)
+#define CONFIG1_POWER_SAVE_EN				CONFIG1_POWER_SAVE_EN_Msk
+
+#define CONFIG1_LOG_SCALE_EN_Pos			(5U)
+#define CONFIG1_LOG_SCALE_EN_Msk			(0x1U << CONFIG1_LOG_SCALE_EN_Pos)
+#define CONFIG1_LOG_SCALE_EN				CONFIG1_LOG_SCALE_EN_Msk
+
+/* Bit definition for LED_CONFIG0 */
+#define LED_CONFIG0_LED0_BANK_EN_Pos		(0U)
+#define LED_CONFIG0_LED0_BANK_EN_Msk		(0x1U << LED_CONFIG0_LED0_BANK_EN_Pos)
+#define LED_CONFIG0_LED0_BANK_EN			LED_CONFIG0_LED0_BANK_EN_Msk
+
+#define LED_CONFIG0_LED1_BANK_EN_Pos		(1U)
+#define LED_CONFIG0_LED1_BANK_EN_Msk		(0x1U << LED_CONFIG0_LED1_BANK_EN_Pos)
+#define LED_CONFIG0_LED1_BANK_EN			LED_CONFIG0_LED1_BANK_EN_Msk
+
+#define LED_CONFIG0_LED2_BANK_EN_Pos		(2U)
+#define LED_CONFIG0_LED2_BANK_EN_Msk		(0x1U << LED_CONFIG0_LED2_BANK_EN_Pos)
+#define LED_CONFIG0_LED2_BANK_EN			LED_CONFIG0_LED2_BANK_EN_Msk
+
+#define LED_CONFIG0_LED3_BANK_EN_Pos		(3U)
+#define LED_CONFIG0_LED3_BANK_EN_Msk		(0x1U << LED_CONFIG0_LED3_BANK_EN_Pos)
+#define LED_CONFIG0_LED3_BANK_EN			LED_CONFIG0_LED3_BANK_EN_Msk
+
+#define INTENSITY_0_PERCENT			((uint8_t)0x00U)
+#define INTENSITY_10_PERCENT		((uint8_t)0x1AU)
+#define INTENSITY_20_PERCENT		((uint8_t)0x33U)
+#define INTENSITY_30_PERCENT		((uint8_t)0x4DU)
+#define INTENSITY_40_PERCENT		((uint8_t)0x66U)
+#define INTENSITY_50_PERCENT		((uint8_t)0x80U)
+#define INTENSITY_60_PERCENT		((uint8_t)0x99U)
+#define INTENSITY_70_PERCENT		((uint8_t)0xB3U)
+#define INTENSITY_80_PERCENT		((uint8_t)0xCCU)
+#define INTENSITY_90_PERCENT		((uint8_t)0xE6U)
+#define INTENSITY_100_PERCENT		((uint8_t)0xFFU)
+
+#define LP50XX_CONFIG_MAX_CURRENT_35_mA		1
+#define LP50XX_CONFIG_MAX_CURRENT_25_5_mA	2
+
+#define LP50XX_LED0_BANK		LED_CONFIG0_LED0_BANK_EN
+#define LP50XX_LED1_BANK		LED_CONFIG0_LED1_BANK_EN
+#define LP50XX_LED2_BANK		LED_CONFIG0_LED2_BANK_EN
+#define LP50XX_LED3_BANK		LED_CONFIG0_LED3_BANK_EN
+
+#define LP50XX_BANK_A	REG_BANK_A_COLOR
+#define LP50XX_BANK_B	REG_BANK_B_COLOR
+#define LP50XX_BANK_C	REG_BANK_C_COLOR
+
+#define LP50XX_LED0_BRIGHTNESS		REG_LED0_BRIGHTNESS
+#define LP50XX_LED1_BRIGHTNESS		REG_LED1_BRIGHTNESS
+#define LP50XX_LED2_BRIGHTNESS		REG_LED2_BRIGHTNESS
+
+#if defined(LP5012)
+#define LP50XX_LED3_BRIGHTNESS		REG_LED3_BRIGHTNESS
+#endif
+
+#define LP50XX_OUT0		REG_OUT0_COLOR
+#define LP50XX_OUT1		REG_OUT1_COLOR
+#define LP50XX_OUT2		REG_OUT2_COLOR
+#define LP50XX_OUT3		REG_OUT3_COLOR
+#define LP50XX_OUT4		REG_OUT4_COLOR
+#define LP50XX_OUT5		REG_OUT5_COLOR
+#define LP50XX_OUT6		REG_OUT6_COLOR
+#define LP50XX_OUT7		REG_OUT7_COLOR
+#define LP50XX_OUT8		REG_OUT8_COLOR
+
+#if defined(LP5012)
+#define LP50XX_OUT9		REG_OUT9_COLOR
+#define LP50XX_OUT10	REG_OUT10_COLOR
+#define LP50XX_OUT11	REG_OUT11_COLOR
+#endif
+
+#define LP50XX_BANK_RED		LP50XX_BANK_A
+#define LP50XX_BANK_GREEN	LP50XX_BANK_B
+#define LP50XX_BANK_BLUE	LP50XX_BANK_C
+
+typedef struct {
+	uint8_t maxCurrent;
+	bool PWM_DitheringEn;
+	bool autoIncrEn;
+	bool powerSaveEn;
+	bool logScaleEn;
+} LP50XX_ConfigTypeDef;
+
+void LP50XX_ConfigDevice(const LP50XX_ConfigTypeDef *conf);
+
+void LP50XX_SetChipEnabled(bool enabled);
+
+void LP50XX_DisableAllLeds(bool yes);
+
+void LP50XX_SetLedBankEnabled(uint8_t led, bool enabled);
+
+void LP50XX_SetBankBrightness(uint8_t brightness);
+
+void LP50XX_SetBankColor(uint8_t bank, uint8_t color);
+
+void LP50XX_SetLedBrightness(uint8_t led, uint8_t color);
+
+void LP50XX_SetOutColor(uint8_t out, uint8_t color);
+
+void LP50XX_Reset();
+
+#endif
